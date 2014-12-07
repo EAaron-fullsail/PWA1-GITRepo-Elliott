@@ -13,35 +13,38 @@
     console.log("FIGHT!!!");
 
     //player name
-    var playerOneName = "Kabal"; // Declare player ones name as 
-    var playerTwoName = "Kratos";    // Declare Player two's name as Kratos
+    //var playerOneName = "Kabal"; // Declare player ones name as 
+    //var playerTwoName = "Kratos";    // Declare Player two's name as Kratos
 
     //player damage
-    var player1Damage = 20;  // Declare the min Damage for player one
-    var player2Damage = 20;  // Declare the min Damage for player two
+    //var player1Damage = 20;  // Declare the min Damage for player one
+    //var player2Damage = 20;  // Declare the min Damage for player two
 
     //player health
-    var playerOneHealth = 100; // Declare the health for player one
-    var playerTwoHealth = 100; // Declare the health for player two
+    //var playerOneHealth = 100; // Declare the health for player one
+    //var playerTwoHealth = 100; // Declare the health for player two
+
+    var PlayerOne = ['Kabal','20','100'],
+    PlayerTwo = ['Kabal','20','100'];
 
     //initiate round
     var round=0;  // Decalare variable 
 
     function fight(){ // Init fight function 
-        alert(playerOneName+":"+playerOneHealth+"  *START*  "+playerTwoName+":"+playerTwoHealth); // Alert with starting health with each player
+        alert(PlayerOne[0]+":"+PlayerOne[2]+"  *START*  "+PlayerTwo[0]+":"+PlayerTwo[2]); // Alert with starting health with each player
         for (var i = 0; i < 10; i++) // for loop to deal damage
         {
             //random formula is - Math.floor(Math.random() * (max - min) + min);
-            var minDamage1 = player1Damage * .5; // Declare the minDamage for player one
-            var minDamage2 = player2Damage * .5; // Declare the minDamage for player one            
-            var f1 = Math.floor(Math.random()*(player1Damage-minDamage1)+minDamage1); // Randomize the damage dealt by player one
-            var f2 = Math.floor(Math.random()*(player2Damage-minDamage2)+minDamage2); // Randomize the damage dealt by player one
+            var minDamage1 = PlayerOne[1] * .5; // Declare the minDamage for player one
+            var minDamage2 = PlayerTwo[1] * .5; // Declare the minDamage for player one            
+            var f1 = Math.floor(Math.random()*(PlayerOne[1]-minDamage1)+minDamage1); // Randomize the damage dealt by player one
+            var f2 = Math.floor(Math.random()*(PlayerTwo[1]-minDamage2)+minDamage2); // Randomize the damage dealt by player one
 
             //inflict damage
-            playerOneHealth-=f1; // Decrement the damage dealt by player one
-            playerTwoHealth-=f2; // Decrement the damage dealt by player one
+            PlayerOne[2]-=f1; // Decrement the damage dealt by player one
+            PlayerTwo[2]-=f2; // Decrement the damage dealt by player one
 
-            console.log(playerOneName+": "+playerOneHealth + " " + playerTwoName+":"+playerTwoHealth); // Log the action to the console
+            console.log(PlayerOne[0]+": "+PlayerOne[2] + " " + PlayerTwo[1]+":"+PlayerTwo[2]); // Log the action to the console
 
             //check for victor
             var result = winnerCheck(); // Call the winner check function
@@ -49,7 +52,7 @@
             if (result==="no winner") // check to see if there was a winner 
             {
                 round++; // No? Increment the round variable 
-                alert(playerOneName+":"+playerOneHealth+"  *ROUND "+round+" OVER"+"*  "+playerTwoName+":"+playerTwoHealth); // Alert this to the user
+                alert(PlayerOne[0]+":"+PlayerOne[2]+"  *ROUND "+round+" OVER"+"*  "+PlayerTwo[0]+":"+PlayerTwo[2]); // Alert this to the user
 
             } else{
                 alert(result); // Yes? Alert the result to the user
