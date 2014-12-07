@@ -1,10 +1,10 @@
 /**
- * Debug Part 1 
- * Date: 12/5/14
+ * Debug Part 2 
+ * Date: 12/6/14
  * Aaron Elliott 
 
  Assignment 1
- Part 1/3 of series
+ Part 2/3 of series
 */
 
 // Create privatized scope using a self-executing function
