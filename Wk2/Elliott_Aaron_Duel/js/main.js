@@ -64,14 +64,14 @@
 
     function winnerCheck(){ // Start winnercheck function 
         var result="no winner"; // Declare the winner check variable 
-        if (playerOneHealth<1 && playerTwoHealth<1) // See if both players have health remaining 
+        if (PlayerOne[2]<1 && PlayerTwo[2]<1) // See if both players have health remaining 
         {
             result = "You Both Die";  // set result variable to "You Both Die"
-        } else if(playerOneHealth<1){ // Did player one die?  
-            result =playerTwoName+" WINS!!!" // set result variable to "Player 2 Wins"
-        } else if (playerTwoHealth<1) // Did player two die? 
+        } else if(PlayerOne[2]<1){ // Did player one die?  
+            result =PlayerTwo[0]+" WINS!!!" // set result variable to "Player 2 Wins"
+        } else if (PlayerTwo[2]<1) // Did player two die? 
         {
-            result = playerOneName+" WINS!!!" // set result variable to "Player 1 Wins"
+            result = PlayerOne[0]+" WINS!!!" // set result variable to "Player 1 Wins"
         };
        return result;
     };
