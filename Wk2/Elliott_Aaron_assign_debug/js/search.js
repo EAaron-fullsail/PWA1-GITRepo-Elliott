@@ -8,7 +8,7 @@
 */
 
 // Create privatized scope using a self-executing function
-(function(){
+//(function(){
 	
 	// Variable initialization (DO NOT FIX ANY OF THE BELOW VAR's)
 	var resultsDIV = document.getElementById("results"), // Get the element with the id of results
@@ -16,15 +16,15 @@
 		currentSearch = '';  							// Set variable currentSearch to '' 
 	
 	// Validates search query
-	var validate == function(query){                    // Declare validate as a function
+	var validate = function(query){                    // Declare validate as a function
 		
 		// Trim whitespace from start and end of search query
-		while(query.charAt(0) = " "){                  // Trim whitespace at start of string
+		while(query.charAt(0) === " "){                  // Trim whitespace at start of string
 			query = query.substring(1, query.length);  // Get the length of the input
 		};
 		while(query.charAt(query.length-1) === ""){    // Find the length of the string
 			query = query.substring(0, query.length-1); // trim whitespace
-		;
+		};
 		
 		// Check search length, must have 3 characters
 		if(query.length < 3){ // check to see the string entered is more than three characters
@@ -42,7 +42,7 @@
 	var search = function(query){ // Declare search as a function
 		
 		// split the user's search query string into an array
-		var queryArray = query.join(" "); // join all elements of array
+		var queryArray = query.join(); // join all elements of array
 		
 		// array to store matched results from database.js
 		var results = [];  // init empty array named Results
@@ -81,9 +81,7 @@
 	
 	// Put "No Results" message into page (DO NOT FIX THE HTML VAR NOR THE innerHTML)
 	var noMatch = function(){  // declare noMatch as function
-		var html = ''+  // set string to print when no results are found
-			'<p>No Results found.</p>'+
-			'<p style="font-size:10px;">Try searching for "JavaScript".  Just an idea.</p>';
+		var html = ''+ '<p>No Results found.</p>'+'<p style="font-size:10px;">Try searching for "JavaScript".  Just an idea.</p>'; // set string to print when no results are found
 		resultsDIV.innerHTML = html; // replace innerHTML with html value
 	};
 	
@@ -115,12 +113,12 @@
 	// The onsubmit event will be reviewed in upcoming Course Material.
 	// THE LINE DIRECTLY BELOW IS CORRECT
 	document.forms[0].onsubmit = function(){  // When form is submitted
-		var query = searchInput.value;        //  set input to search string 
+		var query = searchInput.value;       //  set input to search string 
 		validate(query);               		  // Query the database
 
         // return false is needed for most events - this will be reviewed in upcoming course material
         // THE LINE DIRECTLY BELOW IS CORRECT
 		return false;
-	;
+};
 
-})();
+//});
