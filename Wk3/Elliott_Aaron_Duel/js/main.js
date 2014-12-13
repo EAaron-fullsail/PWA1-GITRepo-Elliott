@@ -10,6 +10,9 @@
 // self-executing function
 (function(){ // anon js function 
 
+    var doc = document,
+    win = window;
+
     console.log("FIGHT!!!");
 
     //player name
@@ -24,59 +27,69 @@
     //var playerOneHealth = 100; // Declare the health for player one
     //var playerTwoHealth = 100; // Declare the health for player two
 
-    var PlayerOne = ['Kabal','20','100'],
-    PlayerTwo = ['Kabal','20','100'];
+    var playerOne = {pName:'Kabal', damage:'20', health:'100'},
+    playerTwo = {pName:'Kratos', damage:'20', health:'100'};
+
+    var playerOneHUD = doc.getElementById('player_one'),
+    playerTwoHUD = doc.getElementById('player_two'),
+    playerOneName = playerOneHUD.getElementsByTagName('p')[0],
+    playerOneHealth = playerOneHUD.getElementsByTagName('p')[1],
+    playerTwoName = playerTwoHUD.getElementsByTagName('p')[0],
+    playerTwoHealth = playerTwoHUD.getElementsByTagName('p')[1];
+
+
+
+    playerOneName.innerHTML = playerOne.pName;
+    playerTwoName.innerHTML = playerTwo.pName;
+    playerOneHealth.innerHTML = playerOne.health;
+    playerTwoHealth.innerHTML = playerTwo.health;
 
     //initiate round
     var round=0;  // Decalare variable 
 
     function fight(){ // Init fight function 
-        alert(PlayerOne[0]+":"+PlayerOne[2]+"  *START*  "+PlayerTwo[0]+":"+PlayerTwo[2]); // Alert with starting health with each player
-        for (var i = 0; i < 10; i++) // for loop to deal damage
+
+        //random formula is - Math.floor(Math.random() * (max - min) + min);
+        var minDamage1 = playerOne.damage * .5; // Declare the minDamage for player one
+        minDamage2 = playerTwo.damage * .5, // Declare the minDamage for player one            
+        f1 = Math.floor(Math.random()*(playerOne.damage-minDamage1)+minDamage1), // Randomize the damage dealt by player one
+        f2 = Math.floor(Math.random()*(playerTwo.damage-minDamage2)+minDamage2); // Randomize the damage dealt by player one
+
+        //inflict damage
+        playerOne.health-=f1; // Decrement the damage dealt by player one
+        playerTwo.health-=f2; // Decrement the damage dealt by player one
+
+        console.log(playerOne.pName+": "+playerOne.health + " " + playerTwo.damage+":"+playerTwo.health); // Log the action to the console
+
+        //check for victor
+        var result = winnerCheck(); // Call the winner check function
+        console.log(result);        // Log the result variable to the console
+        if (result==="no winner") // check to see if there was a winner 
         {
-            //random formula is - Math.floor(Math.random() * (max - min) + min);
-            var minDamage1 = PlayerOne[1] * .5; // Declare the minDamage for player one
-            var minDamage2 = PlayerTwo[1] * .5; // Declare the minDamage for player one            
-            var f1 = Math.floor(Math.random()*(PlayerOne[1]-minDamage1)+minDamage1); // Randomize the damage dealt by player one
-            var f2 = Math.floor(Math.random()*(PlayerTwo[1]-minDamage2)+minDamage2); // Randomize the damage dealt by player one
+            round++; // No? Increment the round variable 
+            alert(playerOne.pName+":"+playerOne.health+"  *ROUND "+round+" OVER"+"*  "+playerTwo.pName+":"+playerTwo.health); // Alert this to the user
 
-            //inflict damage
-            PlayerOne[2]-=f1; // Decrement the damage dealt by player one
-            PlayerTwo[2]-=f2; // Decrement the damage dealt by player one
-
-            console.log(PlayerOne[0]+": "+PlayerOne[2] + " " + PlayerTwo[1]+":"+PlayerTwo[2]); // Log the action to the console
-
-            //check for victor
-            var result = winnerCheck(); // Call the winner check function
-            console.log(result);        // Log the result variable to the console
-            if (result==="no winner") // check to see if there was a winner 
-            {
-                round++; // No? Increment the round variable 
-                alert(PlayerOne[0]+":"+PlayerOne[2]+"  *ROUND "+round+" OVER"+"*  "+PlayerTwo[0]+":"+PlayerTwo[2]); // Alert this to the user
-
-            } else{
-                alert(result); // Yes? Alert the result to the user
-                break; // end
-            };
-
-          };
+        } else{
+            alert(result); // Yes? Alert the result to the user
+        };
+   
     };
 
     function winnerCheck(){ // Start winnercheck function 
         var result="no winner"; // Declare the winner check variable 
-        if (PlayerOne[2]<1 && PlayerTwo[2]<1) // See if both players have health remaining 
+        if (playerOne.health<1 && playerTwo.health<1) // See if both players have health remaining 
         {
             result = "You Both Die";  // set result variable to "You Both Die"
-        } else if(PlayerOne[2]<1){ // Did player one die?  
-            result =PlayerTwo[0]+" WINS!!!" // set result variable to "Player 2 Wins"
-        } else if (PlayerTwo[2]<1) // Did player two die? 
+        } else if(playerOne.health<1){ // Did player one die?  
+            result =PlayerTwo.pName+" WINS!!!" // set result variable to "Player 2 Wins"
+        } else if (playerTwo.health<1) // Did player two die? 
         {
-            result = PlayerOne[0]+" WINS!!!" // set result variable to "Player 1 Wins"
+            result = playerOne.pName+" WINS!!!" // set result variable to "Player 1 Wins"
         };
        return result;
     };
-
+    var actionButton = doc.getElementsByClassName('buttonblue');
     /*******  The program gets started below *******/
-    fight(); // Call the fight function to start the program
+    //actionButton.onclick = fight(); // Call the fight function to start the program
 
 })();
