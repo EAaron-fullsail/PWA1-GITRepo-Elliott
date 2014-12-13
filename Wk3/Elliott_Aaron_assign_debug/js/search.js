@@ -4,7 +4,7 @@
  * Aaron Elliott 
 
  Assignment 1
- Part 2/3 of series
+ Part 3/3 of series
 */
 
 // Create privatized scope using a self-executing function
@@ -28,7 +28,7 @@
 		
 		// Check search length, must have 3 characters
 		if(query.length < 3){ // check to see the string entered is more than three characters
-			alert("Your search query is too small, try again."); // No? then alert that user must enter longer string
+			resultsDIV.innerHTML = "Your search query is too small, try again."; // No? then alert that user must enter longer string
 			
 			// (DO NOT FIX THE LINE DIRECTLY BELOW)
 			searchInput.focus();  // focus on search input feild 
@@ -42,41 +42,41 @@
 	var searchdb = function(query){ // Declare search as a function
 		
 		// split the user's search query string into an array
-		var queryArray = query.join(); // join search term
-		
+		var queryArray = [],
+		queryArray = query.split(' ');
 		// array to store matched results from database.js
 		var results = [];  // init empty array named Results
 
 		// loop through each index of db array
 		for(var i=0, j=db.length; i<j; i++){ // Loop until condition is met
-		
+
+			
 			// each db[i] is a single video item, each title ends with a pipe "|"
 			// save a lowercase variable of the video title
-			var dbTitleEnd = db[i].indexOf('|'); // Variable for url of db entry
-			var dbitem = db[i].toLowerCase().substring(0, dbTitleEnd); // variable for db entry title
-			
+			var dbTitleEnd = db[i].indexOf('|'), // Variable for url of db entry
+			dbitem = db[i].toLowerCase().substring(0, dbTitleEnd); // variable for db entry title
+	
 			// loop through the user's search query words
 			// save a lowercase variable of the search keyword
 			for(var ii=0, jj=queryArray.length; ii<jj; ii++){ // loop until condition is met
 				var qitem = queryArray[ii].toLowerCase(); // set variable qitem to lowercase entry
-				
+		
 				// is the keyword anywhere in the video title?
 				// If a match is found, push full db[i] into results array
 				var compare = dbitem.indexOf(qitem);  // declare compare to value of qitem
-				if(compare !== -1){     // check to see if compare is empty 
+				if(compare != -1){     // check to see if compare is empty 
 					results.push(db[i]);  // push the results to object with index of i
 				};
 			};
 		};
 		
 		results.sort();  // calls the sort method on the results variable
-		
+		console.log(results);
 		// Check that matches were found, and run output functions
-		if(results.length = 0){ // if no matches are found
+		if(results.length == 0){ // if no matches are found
 			noMatch(); // call the noMatch() function
 		}else{ // if there are results
 			showMatches(results); // return the reults using the showMatches()function
-
 		};
 	};
 	
@@ -87,7 +87,7 @@
 	};
 	
 	// Put matches into page as paragraphs with anchors
-	var showMatches = function( ){  // declare showMatches as function
+	var showMatches = function(results){  // declare showMatches as function
 		
 		// THE NEXT 4 LINES ARE CORRECT.
 		var html = '<p>Results</p>',  // declare html
@@ -100,7 +100,7 @@
 			// title of video ends with pipe
 			// pull the title's string using index numbers
 			titleEnd = results[i].indexOf('|');  // Get everything after |
-			title = results[i].subString(0, titleEnd); // Get eberything before |
+			title = results[i].substring(0, titleEnd); // Get eberything before |
 			
 			// pull the video url after the title
 			url = results[i].substring(results[i].indexOf('|')+1, results[i].length);
