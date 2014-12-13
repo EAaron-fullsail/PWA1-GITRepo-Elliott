@@ -27,8 +27,8 @@
     //var playerOneHealth = 100; // Declare the health for player one
     //var playerTwoHealth = 100; // Declare the health for player two
 
-    var playerOne = {pName:'Kabal', damage:'20', health:'100'},
-    playerTwo = {pName:'Kratos', damage:'20', health:'100'};
+    var playerOne = {pName:'Kabal', damage:'20', health:'100'}, // object for player one
+    playerTwo = {pName:'Kratos', damage:'20', health:'100'}; // object for player two
 
     //initiate round
     var round=0;  // Decalare variable 
@@ -36,24 +36,24 @@
 
     function fight(){ // Init fight function 
 
-        var playerOneHUD = doc.getElementById('player_one'),
-        playerTwoHUD = doc.getElementById('player_two'),
-        playerOneName = playerOneHUD.getElementsByTagName('p')[0],
-        playerOneHealth = playerOneHUD.getElementsByTagName('p')[1],
-        playerTwoName = playerTwoHUD.getElementsByTagName('p')[0],
-        playerTwoHealth = playerTwoHUD.getElementsByTagName('p')[1];
+        var playerOneHUD = doc.getElementById('player_one'), // target the player one hud
+        playerTwoHUD = doc.getElementById('player_two'),// target the player two hud
+        playerOneName = playerOneHUD.getElementsByTagName('p')[0], // target the player one  health
+        playerOneHealth = playerOneHUD.getElementsByTagName('p')[1], // target the player two heath
+        playerTwoName = playerTwoHUD.getElementsByTagName('p')[0],// target the player one name
+        playerTwoHealth = playerTwoHUD.getElementsByTagName('p')[1];// target the player two name
 
 
-        playerOneName.innerHTML = playerOne.pName;
-        playerTwoName.innerHTML = playerTwo.pName;
-        playerOneHealth.innerHTML = "Health:" + playerOne.health;
-        playerTwoHealth.innerHTML = "Health" + playerTwo.health;
+        playerOneName.innerHTML = playerOne.pName; // set the html to player's name
+        playerTwoName.innerHTML = playerTwo.pName;// set the html to player's name
+        playerOneHealth.innerHTML = "Health:" + playerOne.health;// set the html to player's health
+        playerTwoHealth.innerHTML = "Health" + playerTwo.health;// set the html to player's health
 
 
         //alert(playerOne.pName+":"+playerOne.health+"  *START*  "+playerTwo.pName+":"+playerTwo.health); // Alert with starting health with each player
 
-        var output = doc.getElementById('fight_output');
-        output.innerHTML = playerOne.pName+"  *VS*  "+playerTwo.pName;
+        var output = doc.getElementById('fight_output'); // taget the output container
+        output.innerHTML = playerOne.pName+"  *VS*  "+playerTwo.pName; // set the inner html to the player's name
         doc.getElementById('btn').onclick = function() // for loop to deal damage
         {
             //random formula is - Math.floor(Math.random() * (max - min) + min);

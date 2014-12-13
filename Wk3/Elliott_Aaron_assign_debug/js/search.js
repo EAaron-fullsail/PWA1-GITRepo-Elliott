@@ -1,4 +1,4 @@
-/**
+	/**
  * Debug Part 2 
  * Date: 12/6/14
  * Aaron Elliott 
@@ -35,14 +35,14 @@
 			return; // return data
 		};
 		
-		search(query); // search for string entered to form
+		searchdb(query); // search for string entered to form
 	};
 	
 	// Finds search matches
-	var search = function(query){ // Declare search as a function
+	var searchdb = function(query){ // Declare search as a function
 		
 		// split the user's search query string into an array
-		var queryArray = query.join(); // join all elements of array
+		var queryArray = query.join(); // join search term
 		
 		// array to store matched results from database.js
 		var results = [];  // init empty array named Results
@@ -53,12 +53,12 @@
 			// each db[i] is a single video item, each title ends with a pipe "|"
 			// save a lowercase variable of the video title
 			var dbTitleEnd = db[i].indexOf('|'); // Variable for url of db entry
-			var dbitem = db[i].tolowercase().substring(0, dbTitleEnd); // variable for db entry title
+			var dbitem = db[i].toLowerCase().substring(0, dbTitleEnd); // variable for db entry title
 			
 			// loop through the user's search query words
 			// save a lowercase variable of the search keyword
 			for(var ii=0, jj=queryArray.length; ii<jj; ii++){ // loop until condition is met
-				var qitem = queryArray[ii].tolowercase(); // set variable qitem to lowercase entry
+				var qitem = queryArray[ii].toLowerCase(); // set variable qitem to lowercase entry
 				
 				// is the keyword anywhere in the video title?
 				// If a match is found, push full db[i] into results array
@@ -75,7 +75,8 @@
 		if(results.length = 0){ // if no matches are found
 			noMatch(); // call the noMatch() function
 		}else{ // if there are results
-			showMatches(results); // return those reults using the showMatches()function
+			showMatches(results); // return the reults using the showMatches()function
+
 		};
 	};
 	
@@ -86,7 +87,7 @@
 	};
 	
 	// Put matches into page as paragraphs with anchors
-	var showMatches = function(results){  // declare showMatches as function
+	var showMatches = function( ){  // declare showMatches as function
 		
 		// THE NEXT 4 LINES ARE CORRECT.
 		var html = '<p>Results</p>',  // declare html
