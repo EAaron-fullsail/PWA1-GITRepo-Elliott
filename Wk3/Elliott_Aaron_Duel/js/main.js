@@ -1,10 +1,10 @@
 /**
  * Duel Part 2 
- * Date: 12/5/14
+ * Date: 12/12/14
  * Aaron Elliott 
 
  Assignment 1
- Part 2/3 of series
+ Part 3/3 of series
 */
 
 // self-executing function
