@@ -71,7 +71,7 @@
 		};
 		
 		results.sort();  // calls the sort method on the results variable
-		//console.log(results);
+		console.log(results);
 		// Check that matches were found, and run output functions
 		if(results.length == 0){ // if no matches are found
 			noMatch(); // call the noMatch() function
